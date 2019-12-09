@@ -1,5 +1,5 @@
 ---
-title: "교통사고 다발지역"
+title: "차대 사람 교통사고 발생자수 트리맵"
 date: 2019-12-10 03:17:30 -0400
 categories: Datavisualization
 ---
