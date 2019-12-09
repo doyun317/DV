@@ -6,7 +6,7 @@ categories: Datavisualization
 
 <html>
    <head>
-      <title>교통사고유형</title>
+      <title>교통사고 유형</title>
       <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
       </script>
       <script type = "text/javascript">

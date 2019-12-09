@@ -5,6 +5,7 @@ categories: Datavisualization
 ---
 <html>
   <head>
+  <title>요일별 사고 발생 횟수</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
