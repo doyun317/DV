@@ -1,6 +1,6 @@
 ---
 title: "전국 인구수와 교통사고 횟수"
-date: 2019-12-10 03:17:30 -0400
+date: 2019-12-10 03:58:30 -0400
 categories: Datavisualization
 ---
 <html>

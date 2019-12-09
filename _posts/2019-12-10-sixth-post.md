@@ -1461,7 +1461,7 @@ categories: Datavisualization
         var options = {
           icons: {
             default: {
-              normal: 'red.png'}},
+              normal: "\_posts\red.png"}},
          mapType: 'styledMap',
          zoomLevel: 8,
          showTooltip: true,
