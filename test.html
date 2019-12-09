@@ -1,0 +1,78 @@
+<html>
+<head>
+  <title>Continuous Animation Example</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      // [START script_body]
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart () {
+
+      function genData () {
+        var array = [];
+
+        for (var i = 0; i < 20; i++) {
+          var x = Math.floor(Math.random() * 20),
+              y = Math.floor(Math.random() * 50),
+              z = Math.floor(Math.random() * 25);
+          array.push([x, y, z]);
+        }
+        return array;
+      }
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'X');
+      data.addColumn('number', 'Y');
+      data.addColumn('number', 'Z');
+
+      data.addRows(genData());
+
+      var options = {
+        height: 450,
+        chartArea: {
+          width: '85%',
+          height: '85%'
+        },
+        colors: ['#8e0152', '#276419'],
+        pointSize: 10,
+        animation: {
+          duration: 5000,
+          easing: 'linear',
+          startup: true
+        },
+        vAxis: {
+          ticks: [10, 20, 30, 40, 50, 60],
+          gridlines: {color: 'none'}
+        },
+        hAxis: {
+          ticks: [0, 5, 10, 15, 20, 25],
+          gridlines: {color: 'none'}
+        },
+        legend: {position: 'none'},
+        enableInteractivity: false
+      };
+
+      var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+      google.visualization.events.addListener(chart, 'animationfinish', animate);
+
+      chart.draw(data, options);
+
+      function animate() {
+        data = new google.visualization.DataTable();
+        data.addColumn('number', 'X');
+        data.addColumn('number', 'Y');
+        data.addColumn('number', 'Z');
+
+        data.addRows(genData());
+
+        chart.draw(data, options);
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="chart_div"></div>
+</body>
+</html>
