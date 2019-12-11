@@ -1,0 +1,86 @@
+---
+title: "요일별 주간 야간 교통사고 횟수와 사상자수의 반응형 시각화"
+date: 2019-12-11 19:42:30 -0400
+categories: Datavisualization
+---
+<html>
+  <head>
+    <title>인구대비 사고 발생 횟수</title>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the controls package.
+      google.charts.load('current', {'packages':['corechart', 'controls']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawDashboard);
+
+      // Callback that creates and populates a data table,
+      // instantiates a dashboard, a range slider and a pie chart,
+      // passes in the data and draws it.
+      function drawDashboard() {
+
+        // Create our data table.
+        var data = google.visualization.arrayToDataTable([
+        ['행정지역', '인구대비(10000명) 사고 횟수'],
+        ['대구광역시', 4.346955561146699],
+        ['서울특별시',      2.938928271506573],
+        ['제주특별자치도', 2.345636220208926],
+        ['광주광역시', 2.2481105247898736],
+        ['부산광역시',  2.2130893006317071],
+        ['대전광역시', 2.1961764971389076],
+        ['전라도', 1.984004169111758],
+        ['울산광역시', 1.6671225204808606],
+        ['경상도', 1.6347587811556534],
+        ['경기도',     1.3921132751161197],
+        ['충청도', 1.4044656082409795],
+        ['강원도', 1.4278519395421527],
+        ['인천광역시',    1.2478108359351936]
+        ]);
+
+        // Create a dashboard.
+        var dashboard = new google.visualization.Dashboard(
+            document.getElementById('dashboard_div'));
+
+        // Create a range slider, passing some options
+        var donutRangeSlider = new google.visualization.ControlWrapper({
+          'controlType': 'NumberRangeFilter',
+          'containerId': 'filter_div',
+          'options': {
+            'filterColumnLabel': '인구대비(10000명) 사고 횟수'
+          }
+        });
+
+        // Create a pie chart, passing some options
+        var pieChart = new google.visualization.ChartWrapper({
+          'chartType': 'PieChart',
+          'containerId': 'chart_div',
+          'options': {
+            'width': 1280,
+            'height': 720,
+            'pieSliceText': 'value',
+            'legend': 'right'
+          }
+        });
+
+        // Establish dependencies, declaring that 'filter' drives 'pieChart',
+        // so that the pie chart will only display entries that are let through
+        // given the chosen slider range.
+        dashboard.bind(donutRangeSlider, pieChart);
+
+        // Draw the dashboard.
+        dashboard.draw(data);
+      }
+    </script>
+  </head>
+
+  <body>
+    <!--Div that will hold the dashboard-->
+    <div id="dashboard_div" >
+      <!--Divs that will hold each control and chart-->
+      <div id="filter_div"></div>
+      <div id="chart_div"></div>
+    </div>
+  </body>
+</html>
