@@ -1,0 +1,83 @@
+---
+title: "요일별 주간 야간 교통사고 횟수와 사상자수"
+date: 2019-12-11 19:05:30 -0400
+categories: Datavisualization
+---
+<html>
+  <head>
+    <title>요일별 주간 야간 교통사고 횟수와 사상자수</title>
+    </head>
+    <body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawExample2);
+
+      function drawExample2() {
+        // Some raw data (not necessarily accurate)
+        var data1 = [
+          ['Day of the week','야간 사고횟수', '야간 사상자수'],
+          ['월',           125,             152           ],
+          ['화',           111,             121          ],
+          ['수',           134,             166           ],
+          ['목',           113,             120           ],
+          ['금',           145,             155           ],
+          ['토',           137,             156           ],
+          ['일',           125,             152          ]
+        ];
+        var data2 = [
+          ['Day of the week','주간 사고횟수', '주간 사상자수'],
+          ['월',           39,             35           ],
+          ['화',           86,             86          ],
+          ['수',           84,             80           ],
+          ['목',           105,             94           ],
+          ['금',           105,             94           ],
+          ['토',           82,             71           ],
+          ['일',           39,             35          ]
+        ];
+
+        var data = [];
+        data[0] = google.visualization.arrayToDataTable(data1);
+        data[1] = google.visualization.arrayToDataTable(data2);
+
+
+        var options = {
+      vAxis: {title: ""},
+      hAxis: {title: "Day of the week"},
+      seriesType: "bars",
+      series: {2: {type: "line"}},
+      animation:{
+        duration: 1000,
+        easing: 'out'
+      },
+    };
+
+    var current = 0;
+    // Create and draw the visualization.
+    var chart = new google.visualization.ComboChart(document.getElementById('example2-visualization'));
+    var button = document.getElementById('example2-b1');
+    function drawChart() {
+       // Disabling the button while the chart is drawing.
+      button.disabled = true;
+      google.visualization.events.addListener(chart, 'ready',
+          function() {
+            button.disabled = false;
+            button.value = 'Switch to ' + (current ? '야간' : '주간');
+          });
+      options['title'] = (current ? '주간' : '야간') + ' 사고횟수와 사상자수';
+
+      chart.draw(data[current], options);
+    }
+    drawChart();
+
+    button.onclick = function() {
+      current = 1 - current;
+      drawChart();
+    }
+  }
+  </script>
+  <div id="example2-visualization"></div>
+  <button id="example2-b1">주간 야간 변경</button>
+
+  </body>
+  </html>
